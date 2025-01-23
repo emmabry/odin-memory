@@ -65,7 +65,19 @@ function Game( { num, gameState, setGameState, highScore, setHighScore } ) {
         fetchPokemon();
     }, [num]);
 
+
     function shuffle(pokemon) {
+        const cards = document.querySelectorAll('.pokemon-card');
+        cards.forEach((card) => {
+            card.classList.remove('card-back');
+        });
+
+        setTimeout(() => {
+            cards.forEach((card) => {
+                card.classList.add('card-back');
+            });
+        }, 0);
+
         let copyList = pokemon
         let currentIndex = copyList.length;
 
@@ -81,6 +93,12 @@ function Game( { num, gameState, setGameState, highScore, setHighScore } ) {
         copyList[randomIndex], copyList[currentIndex]];
     }
     setRandomArray(copyList);
+
+    setTimeout(() => {
+        cards.forEach((card) => {
+            card.classList.remove('card-back');
+        });
+    }, 1050);
     }
 
     function handleLogic(id) {

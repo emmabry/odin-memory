@@ -1,11 +1,17 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@font-face {
+  font-family: Pokemon;
+  src: url("../assets/Pokemon/GB.ttf");
+}
+
+* {
+  font-family: 'Pokemon', 'Press Start 2P', sans-serif;
+}
+
+:root {
+  line-height: 1.5;
+  font-weight: 200;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,7 +21,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: grey;
   text-decoration: inherit;
 }
 a:hover {
@@ -28,13 +34,11 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -46,30 +50,52 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 .pokemon-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.2em;
   margin: 1.2em;
-  border-radius: 8px;
-  background-color: lightblue;
+  border-radius: 10px;
+  background-image: url("./assets/front.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s;
-  width: 200px;
+  width: 190px;
+  height: 280px;
+  transition: transform 0.6s ease, background-image 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* .pokemon-card:hover {
+  transform: translateY(-0.2em);
+} */
+
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  bottom: -30px;
+}
+
+.pokemon-card h3 {
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.pokemon-card p {
+  font-size: 0.8em;
+}
+
+.card-back {
+  background-image: url("./assets/back.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotateY(180deg);
+}
+
+.card-back * {
+  display: none
 }
 
 .card-container {
@@ -92,8 +118,15 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: aliceblue;
+  padding: 1.2em;
+  border: black 5px solid;
 }
 
+.links {
+  display: flex;
+  padding: 1.2em;
+}
 .buttons {
   display: flex;
 }
@@ -108,4 +141,10 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 0.6em;
+}
+
+body {
+  background-image: url(./assets/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }

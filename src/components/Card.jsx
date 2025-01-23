@@ -2,8 +2,8 @@
 export default function Cards( { item } ) {
     return (
                 <>
-                    <h2>{item.name}</h2>
                     <img src={item.image} alt={item.name} />
+                    <h3>{item.name}</h3>
                     <p>{item.type}</p>
                 </>
     );
