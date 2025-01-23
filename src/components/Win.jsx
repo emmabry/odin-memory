@@ -1,8 +1,9 @@
-export default function Win() {
+/* eslint-disable react/prop-types */
+export default function Win( { restart }) {
     return (
         <div>
         <h1>You won!</h1>
-        <button>Play again</button>
+        <button onClick={restart}>Play again</button>
         </div>
     )
 }

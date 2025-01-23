@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import Start from './components/Start.jsx'
 import Card from './components/Card.jsx'
-import Score from './components/Score.jsx'
 import generatePokemonArray from './scripts/generatePokemonArray.jsx'
 import GameOver from './components/GameOver.jsx';
 import Win from './components/Win.jsx';
 
 export default function App() {
     const [gameState, setGameState] = useState('start');
+    const [highScore, setHighScore] = useState(0);
 
     function easyMode() {
         setGameState('easygame');
@@ -17,6 +16,10 @@ export default function App() {
 
     function hardMode() {
         setGameState('hardgame');
+    }
+
+    function restart() {
+        setGameState('start');
     }
     
 
@@ -27,26 +30,25 @@ export default function App() {
     }
     else if (gameState == 'easygame') {
         return (
-            <Game num={5} gameState={gameState} setGameState={setGameState} />
+            <Game num={5} gameState={gameState} setGameState={setGameState} highScore={highScore} setHighScore={setHighScore} />
         )
     } else if (gameState == 'hardgame') {
         return (
-            <Game num={10} />
+            <Game num={10} gameState={gameState} setGameState={setGameState} highScore={highScore} setHighScore={setHighScore} />
         )
     } else if (gameState == 'gameover') {
         return (
-            <GameOver />
+            <GameOver restart={restart}/>
         )
     } else if (gameState == 'win') {
         return (
-            <Win />
+            <Win restart={restart}/>
         )
     }   
 }
 
-function Game( { num, gameState, setGameState } ) {
+function Game( { num, gameState, setGameState, highScore, setHighScore } ) {
     const [score, setScore] = useState(0);
-    const [highScore, setHighScore] = useState(0);
     const [randomArray, setRandomArray] = useState('');
     const [pokemon, setPokemon] = useState([]);
     const [clickedPokemon, setClickedPokemon] = useState([]);
@@ -65,7 +67,6 @@ function Game( { num, gameState, setGameState } ) {
 
     function shuffle(pokemon) {
         let copyList = pokemon
-        console.log(copyList.length)
         let currentIndex = copyList.length;
 
         // While there remain elements to shuffle...
@@ -82,31 +83,31 @@ function Game( { num, gameState, setGameState } ) {
     setRandomArray(copyList);
     }
 
-    console.log(randomArray)
-
     function handleLogic(id) {
-        console.log('hello')
+        let currentPokemon = [...clickedPokemon];
         if (clickedPokemon.includes(id)) {
             if (score > highScore) {
                 setHighScore(score);
             }
-            setScore(0);
-            setClickedPokemon([]);
             setGameState('gameover');
         } else {
             setScore(score + 1);
             setClickedPokemon([...clickedPokemon, id]);
+            currentPokemon = [...clickedPokemon, id];
             shuffle(pokemon)
         }
-        if (clickedPokemon.length == num) {
-            if (score > highScore) {
-                setHighScore(score);
+        if (currentPokemon.length == num) {
+            setScore(score + 1)
+            let helperScore = score + 1
+            if (helperScore > highScore) {
+                setHighScore(helperScore);
             }
-            setScore(0);
-            setClickedPokemon([]);
             setGameState('win');
         }
-
+        if (gameState == 'win' || gameState == 'gameover') {
+            setScore(0);
+            setClickedPokemon([]);
+        }
     }
 
     if (isLoading) {

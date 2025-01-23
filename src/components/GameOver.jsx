@@ -1,8 +1,9 @@
-export default function GameOver() {
+/* eslint-disable react/prop-types */
+export default function GameOver( { restart }) {
     return (
         <div>
         <h1>Game Over</h1>
-        <button>Retry</button>
+        <button onClick={restart}>Retry</button>
         </div>
     )
 }
