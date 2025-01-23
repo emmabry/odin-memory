@@ -5,6 +5,8 @@ import App from './App'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <div className="app-container">
     <App />
+    </div>
   </StrictMode>
 )

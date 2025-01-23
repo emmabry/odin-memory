@@ -78,3 +78,34 @@ button:focus-visible {
   gap: 1.2em;
   justify-content: center;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons * {
+  margin-inline: 1em;
+}
+
+.scoreboard {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+}

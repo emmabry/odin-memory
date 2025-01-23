@@ -115,7 +115,7 @@ function Game( { num, gameState, setGameState, highScore, setHighScore } ) {
     } else {
         return (
             <>
-            <div className="Scoreboard">
+            <div className="scoreboard">
                 <p>Current Score: {score}</p>
                 <p>High Score: {highScore} </p>
             </div>
